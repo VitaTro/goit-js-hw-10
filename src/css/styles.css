@@ -1,7 +1,18 @@
 * {
     box-sizing: border-box;
   }
-  .hidden {
+ 
+ img {
+  float: left;
+  margin-right: 70px;
+ }
+.cat-info {
+  padding: 50px;
+  font-weight: 400;
+
+  font-size: 22px;
+}
+ .hidden {
     display: none;
   }
   .loader {
