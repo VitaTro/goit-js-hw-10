@@ -7,13 +7,40 @@
   margin-right: 70px;
  }
 .cat-info {
-  padding: 50px;
+  padding: 120px;
   font-weight: 400;
   font-size: 22px;
 }
  .hidden {
     display: none;
   }
+.container {
+  position: relative;
+    
+}
+select {
+ color:rgb(115, 0, 255);
+ position: absolute;
+ left: 40%;
+ top: 25px;
+ box-shadow: 3px 3px 8px 0.4px rgba(0, 0, 0, 0.3);
+ box-sizing: border-box;
+ height: 30px;
+ width: 350px;
+ 
+}
+select::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+select:hover {
+  transform: scale(1.01);
+  
+}
+
   .loading {
     display: block;
   }
@@ -22,8 +49,9 @@
     height: 48px;
     border-radius: 50%;
     position: relative;
-    animation: rotate 1s linear infinite
+    animation: rotate 1s linear infinite;
   }
+  
   .loader::before , .loader::after {
     content: "";
     box-sizing: border-box;
