@@ -1,18 +1,14 @@
 import { fetchBreeds} from './cat-api';
 import { fetchBreedCatId } from './cat-api'; 
 import './css/styles.css';
-import SlimSelect from 'slim-select';
+
 import Notiflix from 'notiflix';
 
 const breedSelect = document.querySelector('.breed-select');
 const infoCat = document.querySelector('.cat-info');
 const loaderPage = document.querySelector('.loader');
 
-// має бути гарний вибір пород 
 
-new SlimSelect({
-  select: '#breedSelect'
-})
 
 // початок запиту
 
@@ -32,6 +28,7 @@ async function fetchData() {
 fetchData();
 
 document.querySelector('.error').style.display = 'none';
+
 // функція, яка вишукує і додає назви пород котів (при цьому анімація завантаження зникає) 
 
 function renderSelect(breeds) {
@@ -45,6 +42,9 @@ function renderSelect(breeds) {
   loaderPage.classList.add('hidden');
 }
 
+// якщо такої назви нема, то буде вискакувати помилка
+// після нового пошуку помилка зникає
+
 breedSelect.addEventListener('change', async event => {
   document.querySelector('.loader').classList.add('loading');
   try {
@@ -55,6 +55,7 @@ breedSelect.addEventListener('change', async event => {
   }
 })
 document.querySelector('.errorCat').style.display = 'none';
+
 // функція, яка при виборі іншої породи буде очищати старі дані, а нові вставляти (після завантаження 
 // анімація має зникнути)
 
@@ -68,7 +69,6 @@ function renderCat(catData) {
     <p>${description}</p>
     <p><strong>Temperament:</strong> ${temperament}</p>
     <p>${origin}</p>
-   
   `;
  
 document.querySelector('.loader').classList.remove('loading');

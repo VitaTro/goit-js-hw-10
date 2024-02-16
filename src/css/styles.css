@@ -1,7 +1,10 @@
 * {
     box-sizing: border-box;
   }
- 
+ body {
+  background-image: url(/src/images/image.jpg);
+  background-size: cover;
+ }
  img {
   float: left;
   margin-right: 70px;
@@ -45,10 +48,12 @@ select:hover {
     display: block;
   }
   .loader {
-    width: 48px;
-    height: 48px;
+    width: 98px;
+    height: 98px;
     border-radius: 50%;
-    position: relative;
+    position: absolute;
+    left:50%;
+    top: 300px;
     animation: rotate 1s linear infinite;
   }
   
