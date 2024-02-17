@@ -4,13 +4,14 @@ import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 
+
 const breedSelect = document.querySelector('.breed-select');
 const infoCat = document.querySelector('.cat-info');
 const loaderPage = document.querySelector('.loader');
 
 // початок запиту
+document.querySelector('.loader').classList.remove('loading');
 
-document.querySelector('.loader').classList.add('loading');
 
 // обробка помилок
 
@@ -21,7 +22,14 @@ async function fetchData() {
     renderSelect(breedsData);
     new SlimSelect({
       select: '#single',
-    })
+      settings: {
+        closeOnSelect: true,
+        hideSelected: true,
+        openPosition: 'auto',
+        contentPosition: 'absolute',
+      }
+      
+    });
   } catch (error) {
     Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
   }
@@ -52,17 +60,15 @@ breedSelect.addEventListener('change', async event => {
   try {
     const catData = await fetchBreedCatId(event.target.value);
     renderCat(catData[0]);
-    new SlimSelect({
-      select: '#single',
-      settings: {
-       
-      }
-    })
   } catch (errorCat) {
-    Notiflix.Notify.failure('Sorry, something went wrong. Please choose another cat breed.')
+    document.querySelector('.loader').classList.remove('loading');
+    Notiflix.Notify.failure('Sorry, something went wrong. Please choose another cat breed.');
+    infoCat.innerHTML = '';
   }
 })
+
 document.querySelector('.errorCat').style.display = 'none';
+
 
 // функція, яка при виборі іншої породи буде очищати старі дані, а нові вставляти (після завантаження 
 // анімація має зникнути)
